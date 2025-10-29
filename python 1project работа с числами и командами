@@ -1,0 +1,24 @@
+# Ввод чисел
+numbers = list(map(int, input("Введите числа через пробел: ").split()))
+
+# Основные вычисления
+total = sum(numbers)
+average = total / len(numbers)
+maximum = max(numbers)
+minimum = min(numbers)
+
+# Подсчёт чётных и нечётных
+evens = sum(1 for n in numbers if n % 2 == 0)
+odds = len(numbers) - evens  # вместо второго прохода по списку
+
+# Разворот списка
+reversed_numbers = list(reversed(numbers))
+
+# Вывод результатов
+print("Сумма:", total)
+print("Среднее:", round(average, 2))
+print("Максимум:", maximum)
+print("Минимум:", minimum)
+print("Чётных:", evens)
+print("Нечётных:", odds)
+print("Обратный список:", reversed_numbers)
