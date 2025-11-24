@@ -1,0 +1,40 @@
+text = input("Введите текст: ")
+
+# 1. Количество символов
+length = len(text)
+print(f"Количество символов: {length}")
+
+# 2. Разбиваем текст на слова
+words = text.split()
+
+# 3. Количество слов
+word_count = len(words)
+print(f"Количество слов: {word_count}")
+
+# 4. Количество уникальных слов
+unique_words = set(words)
+print(f"Количество уникальных слов: {len(unique_words)}")
+
+# 5. Самое длинное слово
+longest_word = max(words, key=len)
+print(f"Самое длинное слово: {longest_word}")
+
+# 6. Частота слов
+freq = {}
+for word in words:
+    if word not in freq:
+        freq[word] = 1
+    else:
+        freq[word] += 1
+
+print("Частота слов:")
+for word, count in freq.items():
+    print(f"{word}: {count}")
+
+# 7. Топ-3 самых частых слов
+sorted_items = sorted(freq.items(), key=lambda x: x[1], reverse=True)
+top3 = sorted_items[:3]
+
+print("Топ-3 слов:")
+for word, count in top3:
+    print(f"{word}: {count}")
