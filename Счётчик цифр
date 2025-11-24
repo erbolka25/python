@@ -1,0 +1,35 @@
+s = input()
+
+even = 0
+odd = 0
+
+# частоты для цифр 0–9
+freq = {str(i): 0 for i in range(10)}
+
+for d in s:
+    digit = int(d)
+
+    # чётные/нечётные
+    if digit % 2 == 0:
+        even += 1
+    else:
+        odd += 1
+
+    # увеличиваем частоту
+    freq[d] += 1
+
+print("Чётных:", even)
+print("Нечётных:", odd)
+
+# максимальная частота
+max_freq = max(freq.values())
+most_common = [d for d in freq if freq[d] == max_freq]
+
+print("Максимальная частота:", max_freq)
+print("Самые частые цифры:", most_common)
+
+# минимальная частота (>0)
+min_freq = min(v for v in freq.values() if v > 0)
+least_common = [d for d in freq if freq[d] == min_freq]
+
+print("Минимальная частота (>0):", least_common)
