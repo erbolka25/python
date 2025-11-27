@@ -1,0 +1,11 @@
+def tip_calculator(total, tip_percent, people):
+    tip = total * (tip_percent / 100)
+    total_with_tip = total + tip
+    per_person = total_with_tip / people
+    print(f"Each person should pay: {per_person} som")
+
+total = float(input("Total bill: "))
+tip_percent = float(input("Tip percent: "))
+people = int(input("Number of people: "))
+
+tip_calculator(total, tip_percent, people)
