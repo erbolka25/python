@@ -1,0 +1,109 @@
+# ============================================================
+#  CAESAR CIPHER PRO
+#  Author: Erbolka
+#  Description:
+#     A professional implementation of Caesar Cipher with
+#     encoding, decoding, input validation, ASCII banners and
+#     a loop that lets the user encrypt unlimited messages.
+# ============================================================
+
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+
+# ============================================================
+#   ASCII INTRO BANNER
+# ============================================================
+
+def banner():
+    print("""
+   ____                _             _____ _       _             
+  / ___|__ _ _ __ ___ (_)_ __   __ _| ____| |_   _| | ___  ___  
+ | |   / _` | '_ ` _ \| | '_ \ / _` |  _| | | | | | |/ _ \/ __| 
+ | |__| (_| | | | | | | | | | | (_| | |___| | |_| | |  __/\__ \ 
+  \____\__,_|_| |_| |_|_|_| |_|\__,_|_____|_|\__,_|_|\___||___/ 
+                                                                  
+    """)
+    print("🔥 Welcome to Caesar Cipher PRO — by Erbolka 🔥")
+    print("====================================================\n")
+
+
+# ============================================================
+#   SHIFT NORMALIZATION
+#   Makes sure shift stays within 0–25
+# ============================================================
+
+def normalize_shift(shift):
+    return shift % 26
+
+
+# ============================================================
+#   ENCODE FUNCTION
+# ============================================================
+
+def encode(text, shift):
+    result = ""
+    shift = normalize_shift(shift)
+
+    for char in text:
+        if char.lower() in alphabet:
+            pos = alphabet.index(char.lower())
+            new_pos = (pos + shift) % 26
+            new_char = alphabet[new_pos]
+
+            # keep original casing
+            if char.isupper():
+                new_char = new_char.upper()
+            result += new_char
+        else:
+            result += char
+    return result
+
+
+# ============================================================
+#   DECODE FUNCTION
+# ============================================================
+
+def decode(text, shift):
+    return encode(text, -shift)
+
+
+# ============================================================
+#   MAIN PROGRAM LOOP
+# ============================================================
+
+def run():
+    banner()
+    
+    while True:
+        choice = input("Type 'encode' or 'decode': ").lower()
+        if choice not in ["encode", "decode"]:
+            print("❌ Invalid choice. Please try again.\n")
+            continue
+
+        text = input("Enter your message: ")
+        
+        try:
+            shift = int(input("Enter your shift (number): "))
+        except ValueError:
+            print("❌ Shift must be a number! Try again.\n")
+            continue
+
+        if choice == "encode":
+            result = encode(text, shift)
+        else:
+            result = decode(text, shift)
+
+        print(f"\n🔐 Result: {result}\n")
+
+        again = input("Do you want to go again? (yes/no): ").lower()
+        if again != "yes":
+            print("\n👋 Goodbye! Thanks for using Caesar Cipher PRO!")
+            break
+
+
+# ============================================================
+#   RUN PROGRAM
+# ============================================================
+
+if __name__ == "__main__":
+    run()
